@@ -1,0 +1,8 @@
+
+*.pyc
+
+mysite/__pycache__/settings.cpython-36.pyc
+mysite/__pycache__/*.pyc
+
+00*
+
