@@ -1,4 +1,5 @@
-# django-tutorial
+# django-tutorial   
+Based on tutorials from [Django Project Documentation](https://docs.djangoproject.com/en/3.2/howto/static-files/)
 
 ## Installation notes  
 Currently using Rocky 8 for an operating system, which ships with Python 3.6, therefore Django 3.2 is the most recent version than can be used.    
