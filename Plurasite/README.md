@@ -57,7 +57,13 @@ Using terminal in Virtual Environment
 
 
 ### Unit 3 - Creating a Simple Web Page
+
+**Creating a Django app**
 ```
+python manage.py startapp website
+# The above creates website directory; remove all contents except __init__.py and views.py
+
+# Now edit meeting_planner/settings.py, in INSTALLED_APPS add 'website', line after all others. 
 
 
 ```
