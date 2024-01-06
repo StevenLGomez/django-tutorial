@@ -2,3 +2,8 @@
 # SlickEdit project files
 *.vtg
 *.vpwhis*
+
+# Ignore miscellaneous python files
+__init__.py
+__pycache__
+
