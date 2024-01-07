@@ -1,6 +1,6 @@
 # From MyAcm - Plurasite Tutorials Django: Getting Started
 
-### Unit 2 - Starting a Django Project
+### Module 2 - Starting a Django Project
 
 **Introducting Django**
 ```
@@ -55,7 +55,7 @@ Using terminal in Virtual Environment
 -->> BEST PRACTICE - Always install packages inside a Virtual Environment <<--
 ```
 
-### Unit 3 - Creating a Simple Web Page
+### Module 3 - Creating a Simple Web Page
 
 **Creating a Django app**
 ```
@@ -65,7 +65,7 @@ python manage.py startapp website
 # Now edit meeting_planner/settings.py, in INSTALLED_APPS add 'website', line after all others. 
 ```
 
-### Unit 4 - Setting up a Data Model
+### Module 4 - Setting up a Data Model
 
 **Introducing Models and Migrations**
 ```
@@ -154,7 +154,7 @@ IMPORTANT: make sure your app is in INSTALLED_APPS
     python manage.py migrate
 
 # Prerequisite
-    Register models with the Admin site (in adin.py)
+    Register models with the Admin site (in admin.py)
     If account hasn't been created yet:
         python mange.py createsuperuser
 ```
@@ -172,22 +172,170 @@ python manage.py makemigrations
     Add default values to models.py
     python manage.py makemigrations
     python manage.py migrate
+```
 
+**Adding Room**
+```
+1.) Add class Room(models.Model): in models.py
+2.) python manage.py makemigrations, cancel due to conflicts
+3.) Delete numbered files in migrations directory
+4.) Delete the database file
+5.) python manage.py makemigrations
+6.) python manage.py migrate
 
+# Also need to recreate the superuser
+python manage.py createsuperuser
 
+# The meeting page now includes a link to add a room.
 
 ```
 
+### Module 5 - Combining Model, View & Template
+The Model-Template-View pattern (a.k.a. Model View Controller)   
 
+|   -----             |   ------          |  ------         |
+| **Model**           |  **Template**     | **View**        |
+|   -----             |   ------          | -------         |
+| **Data**            | **Presentation**  | **Behavior**    |
+| Mapped to DB tables | Generates HTML    | Python function |
+|                     |                   | Mapped to URL   |
 
+Add Templates   
+Make components work together
+* Call model from view
+* Call template from view
+* View parameters in URLs
+* 404 errors
 
+**A Template for the Welcome Page**
 
-
-
-
-
-
-
+Template   
+* Generate HTML   
+* Call template from view   
+* Pass data from view to template   
 
 ```
+          v---In this case, App name is website
+1.) Add website/templates/website/welcome.html
+2.) In views.py, change welcome function to 
+    return render(request, "website/welcome.html")
+
+    Home on web browser now shows welcome.html created above.
+    ```
+
+**A Template for the Welcome Page**
+
+Template Variable: {{message}}
+
+Add to welcome.html
+```
+<p>
+    {{message}}
+</p>
+```
+
+And change views.py welcome function to:
+```
+return render(request, "website/welcome.html",
+    {"message": "This data was sent from the view to the template"})
+```
+
+**A Djanto Template Example**
+```
+<html><head><title>{{name}}'s page</title></head>
+<body>
+    <h1>Hi, I'm {{name}}!</h1>
+    I'm {{age}} years old.
+</body>
+</html>
+
+{{var}} looks up var in the template context
+Other text is copied to HTML output
+This allows creation of dynamic HTML pages
+```
+
+**Calling a Template**
+```
+def home(request):
+    return render(request, "website/welcome.html",
+        {'name: "bob", 'age': 35})
+
+render: pass request and name of template file
+Third argument: dictionary with data passed to the template
+Templates must be in directory /templates inside app 
+Don't forget the return keyword
+```
+
+**Completing the MTV Pattern**
+
+Template   
+* Retrieve model data 
+* Display it using a template
+
+Meeting detail page
+* Retrieve meeting object
+* Pass it to template
+* Take id parameter from URL
+* 404 error when not found
+
+**URLs and Link Building**
+Added new template: website/templates/meetings/detail.html
+urls.py - added path('meetings/<int:id>', detail),
+
+
+**Returning a 404 Error**
+
+```
+```
+
+
+**Review**
+|   -----               |   ------             |  ------                             |
+| **Web Browser**       |                      | **Server**                          |
+|   -----               |   ------             | -------                             |
+|                       |                      |                                     |
+|                       | HTTP GET /meetings/1 |                                     |
+| 127.0.0.1/meetings/1  | -------------------> | #Find mapping in urls.py            |
+|                       |                      | path('meetings/<int:id>', detail)   |
+|                       |                      |                |                    |
+|                       |                      |                V                    |
+| Meetings with ...     |                      | def detail(request,id):             |
+| On February 5th       | <------------------- |   m = get_object_or_404(_)          |
+| Starting at 11:00     |                      |   |                |  ^             |
+| In conference room    |                      |   V                V  |             |
+|                       |                      |  HTML            Database           |
+
+**Retrieving Model Data**
+* Model classes have a .objects attribute that let you retrieve data
+
+* Get all objects
+meetings = Meeting.objects.all()
+
+* Get object count
+num_meetings = Meetings.objects.count()
+
+* Get a specific object
+Meeting = Meeting.objects.get(pk=5)
+
+* Get or 404
+```
+from django.shortcuts import get_object_or_404
+from .models import Meeting
+
+def detail(request, id):
+    meeting = get_object_or_404(Meeting, pk=id)
+```
+
+* Parameters in URLs
+<int:x> will match a number in the url
+This number will be assigned to the view parameter x
+
+For example, /example/5 : x will be 5
+```
+urlpatterns = [
+    path('/example/<int:x>', my_view)
+]
+```
+
+### Module 6 - URLs & Link Binding 
 
