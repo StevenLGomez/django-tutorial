@@ -1,0 +1,55 @@
+
+
+django-tutorial/                 Repository top level
+├── meeting_planner              Pluralsite Django project top level
+│   ├── db.sqlite3               SQLite DB file
+│   ├── manage.py                Script to run server, et al.
+│   ├── meeting_planner          Core project directory
+│   │   ├── asgi.py
+│   │   ├── settings.py          Project settings & INSTALLED_APPS
+│   │   ├── urls.py              urlpatterns 
+│   │   └── wsgi.py
+│   ├── meetings
+│   │   ├── admin.py
+│   │   ├── __init__.py
+│   │   ├── migrations
+│   │   ├── models.py
+│   │   └── views.py
+│   ├── start-firefox.sh         Script to start VM's browser
+│   └── website
+│       ├── templates            Directory containing Application directories
+│       │   ├── meetings
+│       │   │   └── detail.html
+│       │   └── website
+│       │       └── welcome.html
+│       └── views.py
+├── mysite                        Tutorial from Django Project Documentation
+│   ├── db.sqlite3
+│   ├── DjangoFileStructure.txt
+│   ├── manage.py
+│   ├── mysite
+│   │   ├── asgi.py
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   │   ├── __init__.cpython-36.pyc
+│   │   │   ├── settings.cpython-36.pyc
+│   │   │   ├── urls.cpython-36.pyc
+│   │   │   └── wsgi.cpython-36.pyc
+│   │   ├── settings.py
+│   │   ├── urls.py
+│   │   └── wsgi.py
+│   └── polls
+│       ├── admin.py
+│       ├── apps.py
+│       ├── __init__.py
+│       ├── migrations
+│       │   └── __init__.py
+│       ├── models.py
+│       ├── tests.py
+│       ├── urls.py
+│       └── views.py
+├── Plurasite
+│   └── README.md                 Pluralsite Tutorial Documentation (notes)
+└── README.md                     Repository Documentation
+
+18 directories, 54 files
