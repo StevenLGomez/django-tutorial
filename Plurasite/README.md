@@ -339,3 +339,32 @@ urlpatterns = [
 
 ### Module 6 - URLs & Link Binding 
 
+URLs
+* Link building
+* Named URL mappings
+* URLs & apps
+* For loops in templates
+
+Review of Project file structure -> See DjangoFileStructure.txt
+
+Link Building
+* Named URLs
+* For loop in template
+
+Homework Assignment
+Adding views for Rooms
+    Required:
+    View          -> meeting_planner/website/views.py
+    URL mapping   -> meeting_planner/meeting_planner/urls.py
+    Template      -> meeting_planner/meetings/templates/meetings/room_list.html (in example code)
+                  -> meeting_planner/website/templates/meetings/room_list.html (in mine)
+
+URL mappings best practice 
+    App has its own urls.py
+    App prefix in main urls.py
+    Include app urls in main urls
+
+### Module 7 - Templates, Styling & Static Content
+
+
+
